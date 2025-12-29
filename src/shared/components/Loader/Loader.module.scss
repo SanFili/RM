@@ -1,0 +1,41 @@
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &__image {
+    animation: spin 2s linear infinite;
+
+    &_large {
+      width: 475px;
+      height: 465px;
+    }
+
+    &_small {
+      width: 103px;
+      height: 100px;
+    }
+  }
+
+  &__title {
+    font-family: Karla, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 32px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(0.7) rotate(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}

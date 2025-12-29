@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 5px 210px;
+  box-shadow: -2px 0px 8px 2px #0000001a;
+  background: #fff;
+  z-index: 10;
+
+  &__theme,
+  &__language {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #393939;
+    border-radius: 8px;
+  }
+
+  &__language {
+    color: #00000099;
+    font-size: 25px;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+  }
+
+  &__settings {
+    display: flex;
+    gap: 15px;
+  }
+}
