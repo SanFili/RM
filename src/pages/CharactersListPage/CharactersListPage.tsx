@@ -37,29 +37,30 @@ const CharactersListPage = () => {
       ) : (
         <div className={styles.characters__content}>
           {/* Селекты добавлены для примера */}
-          <Select
-            placeholder='Species'
-            options={species}
-            onSelect={(el) => setValue(el)}
-            value={value}
-          />
-          <div style={{ marginTop: 50 }}></div>
-          <Select
-            options={statuses.map((el) => ({
-              value: el.value,
-              label: (
-                <div
-                  className={cn(styles.status, styles[`status_${el.value}`])}
-                >
-                  <p>{el.label}</p>
-                  <span />
-                </div>
-              ),
-            }))}
-            onSelect={(el) => setValue(el)}
-            value={value}
-            size='small'
-          />
+          <div style={{ display: 'flex', gap: 40 }}>
+            <Select
+              placeholder='Species'
+              options={species}
+              onSelect={(el) => setValue(el)}
+              value={value}
+            />
+            <Select
+              options={statuses.map((el) => ({
+                value: el.value,
+                label: (
+                  <div
+                    className={cn(styles.status, styles[`status_${el.value}`])}
+                  >
+                    <p>{el.label}</p>
+                    <span />
+                  </div>
+                ),
+              }))}
+              onSelect={(el) => setValue(el)}
+              value={value}
+              size='small'
+            />
+          </div>
         </div>
       )}
     </div>
