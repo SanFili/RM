@@ -10,3 +10,27 @@
     margin-bottom: 16px;
   }
 }
+
+.status {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  & span {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+  }
+
+  &_alive span {
+    background-color: #12b800;
+  }
+
+  &_dead span {
+    background-color: #df0000;
+  }
+
+  &_unknown span {
+    background-color: #ff9900;
+  }
+}
