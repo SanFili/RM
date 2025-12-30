@@ -1,6 +1,8 @@
-import { FC, useMemo, useState, useCallback, useRef } from 'react';
+import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import cn from 'classnames';
+
 import { ArrowDropdown } from 'src/assets';
+
 import { useClickOutside } from 'src/shared/hooks';
 
 import styles from './Select.module.scss';

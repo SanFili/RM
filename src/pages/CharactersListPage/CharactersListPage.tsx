@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Loader, Select } from 'src/shared/components';
-import { RickAndMorty } from 'src/assets';
 import cn from 'classnames';
+
+import { RickAndMorty } from 'src/assets';
+
+import { Loader, Select } from 'src/shared/components';
 
 import styles from './CharactersListPage.module.scss';
 

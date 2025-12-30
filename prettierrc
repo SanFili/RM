@@ -8,19 +8,5 @@
   "semi": true,
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "endOfLine": "lf",
-  "plugins": [
-    "@trivago/prettier-plugin-sort-imports"
-  ],
-  "importOrder": [
-    "^[react]",
-    "<THIRD_PARTY_MODULES>",
-    "^src/assets",
-    "^src(?!/)",
-    "^src/widget",
-    "^src/shared/(.*)$",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "endOfLine": "lf"
 }
