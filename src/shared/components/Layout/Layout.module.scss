@@ -1,0 +1,11 @@
+.layout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr 60px;
+
+  &__content {
+    background: #fff;
+    margin: 0 auto;
+  }
+}

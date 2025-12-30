@@ -1,0 +1,13 @@
+.button {
+  padding: 0;
+  border: 1px solid #393939;
+  border-radius: 8px;
+
+  &_small {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
