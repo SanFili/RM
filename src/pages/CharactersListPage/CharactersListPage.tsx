@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import cn from 'classnames';
 
-import { RickAndMorty } from 'src/assets';
+import { RickAndMorty, Search } from 'src/assets';
 
-import { Loader, Select } from 'src/shared/components';
+import { Input, Loader } from 'src/shared/components';
 
 import styles from './CharactersListPage.module.scss';
 
@@ -25,6 +25,8 @@ const CharactersListPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [value, setValue] = useState<string | null>(null);
 
+  const onChange = (inputValue) => setValue(inputValue);
+
   return (
     <div className={styles.characters}>
       <img
@@ -36,29 +38,19 @@ const CharactersListPage = () => {
         <Loader title='Loading characters...' />
       ) : (
         <div className={styles.characters__content}>
-          {/* Селекты добавлены для примера */}
+          {/* Инпуты добавлены для примера */}
           <div style={{ display: 'flex', gap: 40 }}>
-            <Select
-              placeholder='Species'
-              options={species}
-              onSelect={(el) => setValue(el)}
+            <Input
               value={value}
+              placeholder='Filter by name...'
+              onChange={onChange}
             />
-            <Select
-              options={statuses.map((el) => ({
-                value: el.value,
-                label: (
-                  <div
-                    className={cn(styles.status, styles[`status_${el.value}`])}
-                  >
-                    <p>{el.label}</p>
-                    <span />
-                  </div>
-                ),
-              }))}
-              onSelect={(el) => setValue(el)}
+            <Input
               value={value}
-              size='small'
+              placeholder='Filter by name...'
+              onChange={onChange}
+              icon={<Search />}
+              type='outlined'
             />
           </div>
         </div>

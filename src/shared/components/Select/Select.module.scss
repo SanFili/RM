@@ -1,5 +1,7 @@
 .select {
   position: relative;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
 
   &__input,
   &__dropdown {
@@ -24,7 +26,6 @@
   &__dropdown {
     position: absolute;
     width: 100%;
-    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
