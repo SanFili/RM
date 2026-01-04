@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 60px;
   padding: 5px 210px;
   box-shadow: -2px 0px 8px 2px #0000001a;
   background: #fff;
@@ -21,6 +21,8 @@
 
   &__language {
     color: #00000099;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
     font-size: 25px;
     line-height: 21px;
     letter-spacing: 0.25px;

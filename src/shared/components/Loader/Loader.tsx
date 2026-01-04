@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
+
 import { Loading } from 'src/assets';
 
 import styles from './Loader.module.scss';
