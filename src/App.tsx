@@ -1,11 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { CharacterInfoPage, CharactersListPage } from './pages';
 import {
   CHARACTER_INFO_PAGE,
   CHARACTERS_LIST_PAGE,
 } from 'src/shared/constants/urls';
-
-import { CharacterInfoPage, CharactersListPage } from './pages';
 
 const browserRouter = createBrowserRouter([
   {

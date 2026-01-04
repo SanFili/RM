@@ -1,5 +1,4 @@
-import { LightTheme, Logo } from 'src/assets';
-
+import { Logo, LightTheme } from 'src/assets';
 import { Button } from 'src/shared/components';
 
 import styles from './Header.module.scss';

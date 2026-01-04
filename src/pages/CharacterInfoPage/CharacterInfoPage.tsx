@@ -1,8 +1,6 @@
 import { useState } from 'react';
-
-import { Arrow } from 'src/assets';
-
 import { Loader } from 'src/shared/components';
+import { Arrow } from 'src/assets';
 
 import styles from './CharacterInfoPage.module.scss';
 
