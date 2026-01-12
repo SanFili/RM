@@ -1,0 +1,12 @@
+.formItem {
+  cursor: pointer;
+
+  &__label {
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+    margin-bottom: 7px;
+  }
+}

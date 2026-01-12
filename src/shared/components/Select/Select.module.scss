@@ -98,6 +98,17 @@
       animation: close-dropdown 0.3s linear;
     }
   }
+
+  &_disabled {
+    .select__input {
+      border: none;
+      padding: 0;
+    }
+
+    .select__icon {
+      display: none;
+    }
+  }
 }
 
 @keyframes open-dropdown {

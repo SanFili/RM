@@ -18,18 +18,12 @@
       font-size: 16px;
       line-height: 150%;
     }
-
-    .input__clear {
-      right: 12px;
-    }
   }
 
   &_underlined {
     width: 178px;
     height: 30px;
-    padding-right: 14px;
 
-    color: #000000de;
     border-bottom: 1px solid #000000;
 
     .input__textbox {
@@ -37,12 +31,27 @@
       font-size: 20px;
       line-height: 30px;
       letter-spacing: 0.15px;
-      background: transparent;
+      color: #000000de;
     }
+  }
 
-    .input__clear {
-      right: 0;
+  &_small {
+    width: 115px;
+
+    border-bottom: 1px solid #000000;
+
+    .input__textbox {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 0.25px;
+      color: #00000099;
     }
+  }
+
+  &_disabled {
+    border: none;
+    pointer-events: none;
   }
 
   &__textbox {
@@ -57,8 +66,9 @@
 
   &__clear {
     position: absolute;
-    width: 9px;
-    height: 9px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
   }
 }
