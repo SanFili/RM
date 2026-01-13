@@ -13,6 +13,7 @@ interface ISelectProps {
   onSelect: (v: string) => void;
   size?: 'small' | 'large';
   placeholder?: string;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -22,6 +23,7 @@ const Select: FC<ISelectProps> = ({
   onSelect,
   size = 'large',
   placeholder,
+  disabled,
   className,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,12 +57,19 @@ const Select: FC<ISelectProps> = ({
       className={cn(
         styles.select,
         styles[`select_${size}`],
+        disabled && styles.select_disabled,
         !isOpen && styles.select_close,
         className
       )}
       ref={ref}
     >
-      <button className={cn(styles.select__input)} onClick={handleToggle}>
+      <button
+        className={cn(styles.select__input)}
+        onClick={handleToggle}
+        type='button'
+        disabled={disabled}
+      >
+        <input value={selected} name={name} style={{ display: 'none' }} />
         <div>{selected ?? placeholder}</div>
         <ArrowDropdown className={styles.select__icon} />
       </button>
@@ -68,7 +77,7 @@ const Select: FC<ISelectProps> = ({
       <ul className={styles.select__dropdown}>
         {options.map((option) => (
           <li
-            key={option.key}
+            key={option.value}
             onClick={() => handleSelect(option.value)}
             className={styles.select__item}
           >

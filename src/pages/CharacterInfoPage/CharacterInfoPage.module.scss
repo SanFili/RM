@@ -3,17 +3,18 @@
     position: absolute;
     top: 102px;
     left: 209px;
+
     display: flex;
     align-items: center;
 
     font-family: Karla, sans-serif;
-    font-weight: 700;
     font-size: 18px;
+    font-weight: 700;
     line-height: 100%;
 
     & svg {
-      padding: 4px;
       margin-right: 8px;
+      padding: 4px;
     }
   }
 }

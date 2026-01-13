@@ -9,9 +9,10 @@ interface IInputProps {
   value: string | null;
   onChange: (v: string) => void;
   name: string;
-  type?: 'outlined' | 'underlined';
+  view?: 'outlined' | 'underlined' | 'small';
   icon?: SVGElement;
   placeholder?: string;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -19,9 +20,10 @@ const Input: FC<IInputProps> = ({
   value,
   onChange,
   name,
-  type = 'underlined',
+  view = 'underlined',
   icon,
   placeholder,
+  disabled,
   className,
 }) => {
   const handleChange = useCallback(
@@ -36,7 +38,14 @@ const Input: FC<IInputProps> = ({
   }, [onChange]);
 
   return (
-    <div className={cn(styles.input, styles[`input_${type}`], className)}>
+    <div
+      className={cn(
+        styles.input,
+        styles[`input_${view}`],
+        disabled && styles.input_disabled,
+        className
+      )}
+    >
       {icon ? <div className={styles.input__icon}>{icon}</div> : null}
       <input
         name={name}
@@ -45,7 +54,7 @@ const Input: FC<IInputProps> = ({
         onChange={handleChange}
         className={styles.input__textbox}
       />
-      {value?.length > 0 ? (
+      {value?.length > 0 && !disabled && view === 'outlined' ? (
         <Close onClick={handleClear} className={styles.input__clear} />
       ) : null}
     </div>

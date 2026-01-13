@@ -1,0 +1,1 @@
+export { characterType } from './characterType';

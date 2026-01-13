@@ -1,31 +1,42 @@
 import { useState } from 'react';
-import cn from 'classnames';
 
-import { RickAndMorty, Search } from 'src/assets';
+import { RickAndMorty } from 'src/assets';
 
-import { Input, Loader } from 'src/shared/components';
+import { Loader } from 'src/shared/components';
+import { characterType } from 'src/shared/types';
+
+import { CharacterCard } from 'src/widgets';
 
 import styles from './CharactersListPage.module.scss';
 
-const species = [
-  { value: '1', label: 'Human' },
-  { value: '2', label: 'Alien' },
-  { value: '3', label: 'Humanoid' },
-  { value: '4', label: 'Animal' },
-  { value: '5', label: 'Robot' },
-];
-
-const statuses = [
-  { value: 'alive', label: 'Alive' },
-  { value: 'dead', label: 'Dead' },
-  { value: 'unknown', label: 'Unknown' },
+const characters: characterType[] = [
+  {
+    id: 1,
+    name: 'Rick Sanchez',
+    status: 'Alive',
+    species: 'Human',
+    type: '',
+    gender: 'Male',
+    origin: {
+      name: 'Earth',
+      url: 'https://rickandmortyapi.com/api/location/1',
+    },
+    location: {
+      name: 'Earth',
+      url: 'https://rickandmortyapi.com/api/location/20',
+    },
+    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+    episode: [
+      'https://rickandmortyapi.com/api/episode/1',
+      'https://rickandmortyapi.com/api/episode/2',
+    ],
+    url: 'https://rickandmortyapi.com/api/character/1',
+    created: '2017-11-04T18:48:46.250Z',
+  },
 ];
 
 const CharactersListPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [value, setValue] = useState<string | null>(null);
-
-  const onChange = (inputValue) => setValue(inputValue);
 
   return (
     <div className={styles.characters}>
@@ -38,21 +49,9 @@ const CharactersListPage = () => {
         <Loader title='Loading characters...' />
       ) : (
         <div className={styles.characters__content}>
-          {/* Инпуты добавлены для примера */}
-          <div style={{ display: 'flex', gap: 40 }}>
-            <Input
-              value={value}
-              placeholder='Filter by name...'
-              onChange={onChange}
-            />
-            <Input
-              value={value}
-              placeholder='Filter by name...'
-              onChange={onChange}
-              icon={<Search />}
-              type='outlined'
-            />
-          </div>
+          {characters.map((character) => (
+            <CharacterCard key={character.id} data={character} />
+          ))}
         </div>
       )}
     </div>
