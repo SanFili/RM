@@ -2,11 +2,12 @@
 @import 'normalize.css';
 
 :root {
-  color: #212121;
-  background-color: #ffffff;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: #212121;
+  text-rendering: optimizelegibility;
+
+  background-color: #fff;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,24 +17,25 @@
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
+
   min-width: 320px;
   min-height: 100vh;
+  margin: 0;
 }
 
 button {
-  background-color: transparent;
-  border: none;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 input {
-  border: none;
-  outline: none;
   padding: 0;
+  border: none;
   background: transparent;
+  outline: none;
 }
 
 p {

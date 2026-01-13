@@ -1,30 +1,34 @@
 .header {
+  z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   height: 60px;
   padding: 5px 210px;
-  box-shadow: -2px 0px 8px 2px #0000001a;
+
   background: #fff;
-  z-index: 10;
+  box-shadow: -2px 0 8px 2px #0000001a;
 
   &__theme,
   &__language {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 38px;
     height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid #393939;
     border-radius: 8px;
   }
 
   &__language {
-    color: #00000099;
     font-family: Roboto, sans-serif;
-    font-weight: 400;
     font-size: 25px;
+    font-weight: 400;
     line-height: 21px;
+    color: #0009;
     letter-spacing: 0.25px;
   }
 

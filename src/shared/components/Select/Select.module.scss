@@ -5,16 +5,18 @@
 
   &__input,
   &__dropdown {
-    color: #00000099;
     border: 1px solid #393939;
     border-radius: 6px;
+    color: #0009;
   }
 
   &__input {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
     background: #fff;
   }
 
@@ -25,19 +27,21 @@
 
   &__dropdown {
     position: absolute;
-    width: 100%;
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
 
+    width: 100%;
+
     background: #fff;
+
     animation: open-dropdown 0.3s linear;
-    z-index: 10;
   }
 
   &__item {
-    list-style: none;
     cursor: pointer;
+    list-style: none;
   }
 
   &_large {
@@ -56,8 +60,8 @@
 
     .select__dropdown {
       gap: 21px;
-      padding: 11px 14px;
       margin-top: 8px;
+      padding: 11px 14px;
     }
   }
 
@@ -77,14 +81,14 @@
     }
 
     .select__icon {
-      height: 9px;
       width: 9px;
+      height: 9px;
     }
 
     .select__dropdown {
       gap: 5px;
-      padding: 5px;
       margin-top: 7px;
+      padding: 5px;
     }
   }
 
@@ -101,8 +105,8 @@
 
   &_disabled {
     .select__input {
-      border: none;
       padding: 0;
+      border: none;
     }
 
     .select__icon {
