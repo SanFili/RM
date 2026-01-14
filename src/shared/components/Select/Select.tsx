@@ -14,6 +14,7 @@ interface ISelectProps {
   size?: 'small' | 'large';
   placeholder?: string;
   disabled?: boolean;
+  name?: string;
   className?: string;
 }
 
@@ -24,6 +25,7 @@ const Select: FC<ISelectProps> = ({
   size = 'large',
   placeholder,
   disabled,
+  name,
   className,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -69,7 +71,7 @@ const Select: FC<ISelectProps> = ({
         type='button'
         disabled={disabled}
       >
-        <input value={selected} name={name} style={{ display: 'none' }} />
+        <input value={selected} id={name} style={{ display: 'none' }} />
         <div>{selected ?? placeholder}</div>
         <ArrowDropdown className={styles.select__icon} />
       </button>

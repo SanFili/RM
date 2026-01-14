@@ -48,7 +48,7 @@ const Input: FC<IInputProps> = ({
     >
       {icon ? <div className={styles.input__icon}>{icon}</div> : null}
       <input
-        name={name}
+        id={name}
         value={value}
         placeholder={placeholder}
         onChange={handleChange}

@@ -18,3 +18,10 @@ export interface characterType {
   url: string;
   created: string;
 }
+
+export interface characterFiltersType {
+  name: string;
+  species: string;
+  gender: string;
+  status: string;
+}

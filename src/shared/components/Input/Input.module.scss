@@ -38,6 +38,7 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 150%;
+      color: #0009;
     }
   }
 
@@ -70,6 +71,6 @@
 
   &_disabled {
     pointer-events: none;
-    border: none;
+    border-color: transparent;
   }
 }

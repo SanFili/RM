@@ -1,23 +1,18 @@
-import { FC, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, useMemo, useState } from 'react';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
+import { Check, Close, Edit } from 'src/assets';
+
+import { FormItem, Input, Select } from 'src/shared/components';
+import { statusesOptions } from 'src/shared/constants/options';
 import { characterType } from 'src/shared/types';
-import { Input, Select, FormItem } from 'src/shared/components';
-import { Edit, Close, Check } from 'src/assets';
 
 import styles from './CharacterCard.module.scss';
-import { CHARACTER_INFO_PAGE } from 'src/shared/constants/urls';
 
 interface CharacterCardProps {
   data: characterType;
 }
-
-const statuses = [
-  { value: 'Alive', label: 'Alive' },
-  { value: 'Dead', label: 'Dead' },
-  { value: 'Unknown', label: 'Unknown' },
-];
 
 const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
   const { id, name, image, gender, species, location, status } = data;
@@ -49,7 +44,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
         </FormItem>
         <FormItem name='status' label='Status'>
           <Select
-            options={statuses.map((el) => ({
+            options={statusesOptions.map((el) => ({
               value: el.value,
               label: (
                 <div
@@ -61,7 +56,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
                 </div>
               ),
             }))}
-            value={status}
+            value={status.toLowerCase()}
             size='small'
             disabled={disabled}
           />

@@ -54,15 +54,15 @@
     border-radius: 10px;
   }
 
-  &_Alive span {
+  &_alive span {
     background-color: #12b800;
   }
 
-  &_Dead span {
+  &_dead span {
     background-color: #df0000;
   }
 
-  &_Unknown span {
+  &_unknown span {
     background-color: #f90;
   }
 }
