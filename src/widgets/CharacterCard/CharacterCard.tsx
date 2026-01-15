@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Check, Close, Edit } from 'src/assets';
 
-import { FormItem, Input, Select } from 'src/shared/components';
+import { Input, Select } from 'src/shared/components';
 import { statusesOptions } from 'src/shared/constants/options';
 import { characterType } from 'src/shared/types';
 
@@ -24,25 +24,32 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
     <div className={styles.card}>
       <img className={styles.card__photo} src={image} alt={name} />
       <form className={styles.card__form}>
-        <FormItem name='name'>
-          <LinkEl
-            to={`/character-info/${id}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Input value={name} disabled={disabled} />
-          </LinkEl>
-        </FormItem>
-        <FormItem name='gender' label='Gender'>
-          <Input value={gender} view='small' disabled />
-        </FormItem>
-        <FormItem name='species' label='Species'>
-          <Input value={species} view='small' disabled />
-        </FormItem>
-        <FormItem name='location' label='Location'>
-          <Input value={location.name} view='small' disabled={disabled} />
-        </FormItem>
-        <FormItem name='status' label='Status'>
+        <LinkEl
+          to={`/character-info/${id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Input value={name} disabled={disabled} name='name' />
+        </LinkEl>
+        <label className={styles.card__label}>
+          Gender
+          <Input value={gender} view='small' disabled name='gender' />
+        </label>
+        <label className={styles.card__label}>
+          Species
+          <Input value={species} view='small' disabled name='species' />
+        </label>
+        <label className={styles.card__label}>
+          Location
+          <Input
+            value={location.name}
+            view='small'
+            disabled={disabled}
+            name='location'
+          />
+        </label>
+        <label className={styles.card__label}>
+          Status
           <Select
             options={statusesOptions.map((el) => ({
               value: el.value,
@@ -58,9 +65,10 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
             }))}
             value={status.toLowerCase()}
             size='small'
+            name='status'
             disabled={disabled}
           />
-        </FormItem>
+        </label>
         <div className={styles.card__buttons}>
           {disabled ? (
             <Edit
