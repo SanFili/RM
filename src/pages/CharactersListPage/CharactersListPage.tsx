@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { RickAndMorty } from 'src/assets';
 
 import { Loader } from 'src/shared/components';
-import { characterType } from 'src/shared/types';
+import { characterFiltersType, characterType } from 'src/shared/types';
 
-import { CharacterCard } from 'src/widgets';
+import { CharacterCard, CharactersFilters } from 'src/widgets';
 
 import styles from './CharactersListPage.module.scss';
 
@@ -37,6 +37,12 @@ const characters: characterType[] = [
 
 const CharactersListPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [filters, setFilters] = useState<characterFiltersType>({
+    name: '',
+    species: '',
+    gender: '',
+    status: '',
+  });
 
   return (
     <div className={styles.characters}>
@@ -49,9 +55,12 @@ const CharactersListPage = () => {
         <Loader title='Loading characters...' />
       ) : (
         <div className={styles.characters__content}>
-          {characters.map((character) => (
-            <CharacterCard key={character.id} data={character} />
-          ))}
+          <CharactersFilters filters={filters} setFilters={setFilters} />
+          <div className={styles.characters__cards}>
+            {characters.map((character) => (
+              <CharacterCard key={character.id} data={character} />
+            ))}
+          </div>
         </div>
       )}
     </div>

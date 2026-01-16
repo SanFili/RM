@@ -24,6 +24,14 @@
     gap: 10px;
   }
 
+  &__label {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+  }
+
   &__buttons {
     cursor: pointer;
     position: absolute;
@@ -54,15 +62,15 @@
     border-radius: 10px;
   }
 
-  &_Alive span {
+  &_alive span {
     background-color: #12b800;
   }
 
-  &_Dead span {
+  &_dead span {
     background-color: #df0000;
   }
 
-  &_Unknown span {
+  &_unknown span {
     background-color: #f90;
   }
 }
