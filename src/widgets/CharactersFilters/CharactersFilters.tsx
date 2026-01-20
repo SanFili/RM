@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 
 import { Search } from 'src/assets';
 
@@ -14,19 +14,16 @@ import styles from './CharactersFilters.module.scss';
 
 interface CharactersFiltersProps {
   filters: characterFiltersType;
-  setFiletrs: (v: CharactersFiltersProps) => void;
+  setFilters: (v: CharactersFiltersProps) => void;
 }
 
 const CharactersFilters: FC<CharactersFiltersProps> = ({
   filters,
   setFilters,
 }) => {
-  const onChangeFiletrs = useCallback(
-    (value, id) => {
-      setFilters((prev) => ({ ...prev, [id]: value }));
-    },
-    [setFilters]
-  );
+  const onChangeFilters = (value, id) => {
+    setFilters((prev) => ({ ...prev, [id]: value }));
+  };
 
   return (
     <div className={styles.filters}>
@@ -34,25 +31,25 @@ const CharactersFilters: FC<CharactersFiltersProps> = ({
         icon={<Search />}
         placeholder='Filter by name'
         view='outlined'
-        onChange={(v) => onChangeFiletrs(v, 'name')}
+        onChange={(value) => onChangeFilters(value, 'name')}
         value={filters.name}
       />
       <Select
         options={speciesOptions}
         placeholder='Species'
-        onSelect={(v) => onChangeFiletrs(v, 'species')}
+        onSelect={(value) => onChangeFilters(value, 'species')}
         value={filters.species}
       />
       <Select
         options={genderOptions}
         placeholder='Gender'
-        onSelect={(v) => onChangeFiletrs(v, 'gender')}
+        onSelect={(value) => onChangeFilters(value, 'gender')}
         value={filters.gender}
       />
       <Select
         options={statusesOptions}
         placeholder='Status'
-        onSelect={(v) => onChangeFiletrs(v, 'status')}
+        onSelect={(value) => onChangeFilters(value, 'status')}
         value={filters.status}
       />
     </div>

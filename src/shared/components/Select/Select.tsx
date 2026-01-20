@@ -42,8 +42,8 @@ const Select: FC<ISelectProps> = ({
   }, []);
 
   const handleSelect = useCallback(
-    (v) => {
-      onSelect(v);
+    (value) => {
+      onSelect(value);
       handleClose();
     },
     [handleClose, onSelect]

@@ -1,41 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { RickAndMorty } from 'src/assets';
 
 import { Loader } from 'src/shared/components';
 import { characterFiltersType, characterType } from 'src/shared/types';
+import { getData } from 'src/shared/utils/restApi';
 
 import { CharacterCard, CharactersFilters } from 'src/widgets';
 
 import styles from './CharactersListPage.module.scss';
 
-const characters: characterType[] = [
-  {
-    id: 1,
-    name: 'Rick Sanchez',
-    status: 'Alive',
-    species: 'Human',
-    type: '',
-    gender: 'Male',
-    origin: {
-      name: 'Earth',
-      url: 'https://rickandmortyapi.com/api/location/1',
-    },
-    location: {
-      name: 'Earth',
-      url: 'https://rickandmortyapi.com/api/location/20',
-    },
-    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-    episode: [
-      'https://rickandmortyapi.com/api/episode/1',
-      'https://rickandmortyapi.com/api/episode/2',
-    ],
-    url: 'https://rickandmortyapi.com/api/character/1',
-    created: '2017-11-04T18:48:46.250Z',
-  },
-];
-
 const CharactersListPage = () => {
+  const [characters, setCharacters] = useState<characterType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filters, setFilters] = useState<characterFiltersType>({
     name: '',
@@ -43,6 +19,23 @@ const CharactersListPage = () => {
     gender: '',
     status: '',
   });
+
+  const getCharactersList = async () => {
+    setIsLoading(true);
+
+    const res = await getData({
+      url: '/character',
+      errorMessage: 'Не удалось загрузить список персонажей.',
+    });
+
+    if (res.results) setCharacters(res.results);
+
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getCharactersList();
+  }, []);
 
   return (
     <div className={styles.characters}>
