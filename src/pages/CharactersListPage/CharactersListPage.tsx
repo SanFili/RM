@@ -39,8 +39,6 @@ const CharactersListPage = () => {
 
   useEffect(() => {
     const controller = new AbortController();
-    //  const searchParams = new URLSearchParams(filters);
-
     debouncedFetch.current(filters, controller.signal);
 
     return () => controller.abort();
