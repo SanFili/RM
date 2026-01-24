@@ -1,7 +1,8 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-import { BASE_URL } from 'src/shared/constants/urls';
+import { BASE_URL } from 'src/shared/constants';
+import { characterFiltersType } from 'src/shared/types';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -9,12 +10,22 @@ const api = axios.create({
 
 interface getDataProps {
   url: string;
+  params: characterFiltersType;
+  signal: AbortSignal;
   errorMessage?: string;
 }
 
-export const getData = async ({ url, errorMessage }: getDataProps) => {
+export const getData = async ({
+  url,
+  params,
+  signal,
+  errorMessage,
+}: getDataProps) => {
   return await api
-    .get(url)
+    .get(url, {
+      params,
+      signal,
+    })
     .then((res) => {
       if (!res.data) {
         throw Error();

@@ -15,4 +15,14 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
   }
+
+  &__empty {
+    margin-top: 25vh;
+
+    font-family: Karla, sans-serif;
+    font-size: 18px;
+    line-height: 100%;
+    text-align: center;
+    letter-spacing: 0%;
+  }
 }
