@@ -1,0 +1,21 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: calc(100vh - 120px);
+
+  &__pic {
+    border-radius: 50%;
+  }
+
+  &__text {
+    margin-top: 16px;
+
+    font-family: Karla, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+  }
+}
