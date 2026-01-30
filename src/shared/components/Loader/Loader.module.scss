@@ -1,6 +1,21 @@
 .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   &__image {
     animation: spin 2s linear infinite;
+
+    &_large {
+      width: 475px;
+      height: 465px;
+    }
+
+    &_small {
+      width: 103px;
+      height: 100px;
+    }
   }
 
   &__title {
@@ -11,25 +26,6 @@
     font-weight: 700;
     line-height: 100%;
     text-align: center;
-  }
-
-  &_large {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    .loader__image {
-      width: 475px;
-      height: 465px;
-    }
-  }
-
-  &_small {
-    .loader__image {
-      width: 103px;
-      height: 100px;
-    }
   }
 }
 
