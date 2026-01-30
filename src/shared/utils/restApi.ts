@@ -27,7 +27,7 @@ export const getData = async ({
       signal,
     })
     .then((res) => {
-      if (!res.data || signal.aborted) {
+      if (!res.data) {
         throw Error();
       }
 

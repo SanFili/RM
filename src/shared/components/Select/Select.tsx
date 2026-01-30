@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useRef, useState } from 'react';
+import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import { ArrowDropdown } from 'src/assets';
@@ -46,12 +46,12 @@ const Select: FC<ISelectProps> = ({
       onSelect(value);
       handleClose();
     },
-    [handleClose, onSelect],
+    [handleClose, onSelect]
   );
 
   const selected = useMemo(
     () => options.find((el) => el.value === value)?.label ?? null,
-    [value, options],
+    [value, options]
   );
 
   return (
@@ -61,7 +61,7 @@ const Select: FC<ISelectProps> = ({
         styles[`select_${size}`],
         disabled && styles.select_disabled,
         !isOpen && styles.select_close,
-        className,
+        className
       )}
       ref={ref}
     >
@@ -91,4 +91,4 @@ const Select: FC<ISelectProps> = ({
   );
 };
 
-export default memo(Select);
+export default Select;

@@ -1,4 +1,4 @@
-import { FC, memo, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import cn from 'classnames';
 
 import styles from './Button.module.scss';
@@ -25,4 +25,4 @@ const Button: FC<IButtonProps> = ({
   );
 };
 
-export default memo(Button);
+export default Button;

@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import cn from 'classnames';
 
 import { Close } from 'src/assets';
@@ -30,7 +30,7 @@ const Input: FC<IInputProps> = ({
     (event) => {
       onChange(event.target.value);
     },
-    [onChange],
+    [onChange]
   );
 
   const handleClear = useCallback(() => {
@@ -43,7 +43,7 @@ const Input: FC<IInputProps> = ({
         styles.input,
         styles[`input_${view}`],
         disabled && styles.input_disabled,
-        className,
+        className
       )}
     >
       {icon ? <div className={styles.input__icon}>{icon}</div> : null}
@@ -61,4 +61,4 @@ const Input: FC<IInputProps> = ({
   );
 };
 
-export default memo(Input);
+export default Input;

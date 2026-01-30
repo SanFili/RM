@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 
 import { Search } from 'src/assets';
 
@@ -21,12 +21,9 @@ const CharactersFilters: FC<CharactersFiltersProps> = ({
   filters,
   setFilters,
 }) => {
-  const onChangeFilters = useCallback(
-    (value, id) => {
-      setFilters((prev) => ({ ...prev, [id]: value }));
-    },
-    [setFilters],
-  );
+  const onChangeFilters = (value, id) => {
+    setFilters((prev) => ({ ...prev, [id]: value }));
+  };
 
   return (
     <div className={styles.filters}>
