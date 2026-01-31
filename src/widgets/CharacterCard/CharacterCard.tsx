@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -6,46 +6,80 @@ import { Check, Close, Edit } from 'src/assets';
 
 import { Input, Select } from 'src/shared/components';
 import { statusesOptions } from 'src/shared/constants/options';
-import { characterType } from 'src/shared/types';
+import { characterCardType } from 'src/shared/types';
 
 import styles from './CharacterCard.module.scss';
 
 interface CharacterCardProps {
-  data: characterType;
+  data: characterCardType;
+  onEditCharacter: (v: characterCardType) => void;
 }
 
-const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
-  const { id, name, image, gender, species, location, status } = data;
+const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
+  const [characterData, setCharacterData] = useState<characterCardType>(data);
   const [disabled, setDisabled] = useState(true);
+
+  const onChangeCharacter = useCallback(
+    (value, id) => {
+      setCharacterData((prev) => ({ ...prev, [id]: value }));
+    },
+    [setCharacterData],
+  );
+
+  const handleSaveEditing = () => {
+    setDisabled(true);
+    onEditCharacter(characterData);
+  };
+
+  const handleCancelEditing = () => {
+    setDisabled(true);
+    setCharacterData(data);
+  };
 
   const LinkEl = useMemo(() => (disabled ? Link : 'div'), [disabled]);
 
   return (
     <div className={styles.card}>
-      <img className={styles.card__photo} src={image} alt={name} />
+      <img className={styles.card__photo} src={data.image} alt={data.name} />
       <form className={styles.card__form}>
         <LinkEl
-          to={`/character-info/${id}`}
+          to={`/character-info/${data.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
-          <Input value={name} disabled={disabled} name='name' />
+          <Input
+            value={characterData.name}
+            disabled={disabled}
+            name='name'
+            onChange={(value) => onChangeCharacter(value, 'name')}
+          />
         </LinkEl>
         <label className={styles.card__label}>
           Gender
-          <Input value={gender} view='small' disabled name='gender' />
+          <Input
+            value={characterData.gender}
+            view='small'
+            disabled
+            name='gender'
+          />
         </label>
         <label className={styles.card__label}>
           Species
-          <Input value={species} view='small' disabled name='species' />
+          <Input
+            value={characterData.species}
+            view='small'
+            disabled
+            name='species'
+          />
         </label>
         <label className={styles.card__label}>
           Location
           <Input
-            value={location.name}
+            value={characterData.location}
             view='small'
             disabled={disabled}
             name='location'
+            onChange={(value) => onChangeCharacter(value, 'location')}
           />
         </label>
         <label className={styles.card__label}>
@@ -63,10 +97,11 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
                 </div>
               ),
             }))}
-            value={status.toLowerCase()}
+            value={characterData.status.toLowerCase()}
             size='small'
             name='status'
             disabled={disabled}
+            onSelect={(value) => onChangeCharacter(value, 'status')}
           />
         </label>
         <div className={styles.card__buttons}>
@@ -77,8 +112,8 @@ const CharacterCard: FC<CharacterCardProps> = ({ data }) => {
             />
           ) : (
             <>
-              <Close onClick={() => setDisabled(true)} />
-              <Check onClick={() => setDisabled(true)} />
+              <Close onClick={handleCancelEditing} />
+              <Check onClick={handleSaveEditing} />
             </>
           )}
         </div>

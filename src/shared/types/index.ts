@@ -1,2 +1,6 @@
-export { characterType } from './characterType';
+export {
+  characterCardType,
+  characterFiltersType,
+  characterType,
+} from './characterType';
 export { OptionType } from './OptionType';

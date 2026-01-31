@@ -77,6 +77,7 @@ const useLoadCharacters = () => {
 
   return {
     characters,
+    setCharacters,
     filters,
     setFilters,
     isLoading,

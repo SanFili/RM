@@ -7,8 +7,8 @@ import {
   genderOptions,
   speciesOptions,
   statusesOptions,
-} from 'src/shared/constants/options';
-import { characterFiltersType } from 'src/shared/types/characterType';
+} from 'src/shared/constants';
+import { characterFiltersType } from 'src/shared/types';
 
 import styles from './CharactersFilters.module.scss';
 
