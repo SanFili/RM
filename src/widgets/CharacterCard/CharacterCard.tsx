@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -43,7 +43,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
       <img className={styles.card__photo} src={data.image} alt={data.name} />
       <form className={styles.card__form}>
         <LinkEl
-          to={`/character-info/${data.id}`}
+          to={`/character/${data.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >

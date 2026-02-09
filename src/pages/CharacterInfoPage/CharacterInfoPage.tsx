@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useParams } from 'react-router';
 
 import { Arrow } from 'src/assets';
 
 import { Loader } from 'src/shared/components';
+import { useLoadCharacter } from 'src/shared/hooks';
 
 import styles from './CharacterInfoPage.module.scss';
 
 const CharacterInfoPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
+  const { character, isLoading, isNotFound } = useLoadCharacter(id);
 
   return (
     <div className={styles.character}>
@@ -17,8 +19,45 @@ const CharacterInfoPage = () => {
       </button>
       {isLoading ? (
         <Loader title='Loading character card...' />
+      ) : isNotFound ? (
+        // TODO 404
+        <p>Character not found</p>
       ) : (
-        <div>character</div>
+        <div className={styles.character__info}>
+          <img
+            className={styles.character__photo}
+            src={character.image}
+            alt={character.name}
+          />
+          <h1 className={styles.character__title}>{character.name}</h1>
+          <h2 className={styles.character__subtitle}>Information</h2>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Gender</p>
+            <p className={styles.character__value}>{character.gender}</p>
+          </div>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Status</p>
+            <p className={styles.character__value}>{character.status}</p>
+          </div>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Species</p>
+            <p className={styles.character__value}>{character.species}</p>
+          </div>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Origin</p>
+            <p className={styles.character__value}>{character.origin?.name}</p>
+          </div>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Type</p>
+            <p className={styles.character__value}>{character.type}</p>
+          </div>
+          <div className={styles.character__item}>
+            <p className={styles.character__name}>Location</p>
+            <p className={styles.character__value}>
+              {character.location?.name}
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
