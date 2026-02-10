@@ -34,7 +34,9 @@ export const getData = async ({
       return res.data;
     })
     .catch((err) => {
-      toast.error(errorMessage ?? err.message);
-      return err;
+      if (err.name !== 'CanceledError') {
+        toast.error(errorMessage ?? err.response?.data?.error ?? err.message);
+      }
+      throw err;
     });
 };

@@ -19,6 +19,16 @@ export interface characterType {
   created: string;
 }
 
+export interface characterCardType {
+  id: string;
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  location: string;
+  image: string;
+}
+
 export interface characterFiltersType {
   name: string;
   species: string;
