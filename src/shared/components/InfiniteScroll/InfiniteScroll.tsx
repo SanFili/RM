@@ -7,13 +7,18 @@ import styles from './InfiniteScroll.module.scss';
 interface IInfiniteScrollProps {
   loadMore: () => void;
   isLoading: boolean;
+  needLoadMore: boolean;
 }
 
-const InfiniteScroll: FC<IInfiniteScrollProps> = ({ loadMore, isLoading }) => {
+const InfiniteScroll: FC<IInfiniteScrollProps> = ({
+  loadMore,
+  isLoading,
+  needLoadMore,
+}) => {
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!isLoading) return;
+    if (!needLoadMore) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +39,7 @@ const InfiniteScroll: FC<IInfiniteScrollProps> = ({ loadMore, isLoading }) => {
       if (loaderRef.current) observer.unobserve(loaderRef.current);
       observer.disconnect();
     };
-  }, [isLoading, loadMore]);
+  }, [needLoadMore, loadMore]);
 
   return (
     <div ref={loaderRef} className={styles.infiniteScroll}>

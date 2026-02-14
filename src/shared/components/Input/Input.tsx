@@ -7,7 +7,7 @@ import styles from './Input.module.scss';
 
 interface IInputProps {
   value: string | null;
-  onChange: (v: string) => void;
+  onChange: (v: string, name?: string) => void;
   name: string;
   view?: 'outlined' | 'underlined' | 'small';
   icon?: SVGElement;
@@ -28,9 +28,9 @@ const Input: FC<IInputProps> = ({
 }) => {
   const handleChange = useCallback(
     (event) => {
-      onChange(event.target.value);
+      onChange(event.target.value, name);
     },
-    [onChange],
+    [onChange, name],
   );
 
   const handleClear = useCallback(() => {

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { characterFiltersType, characterType } from 'src/shared/types';
 import { debounce, getData } from 'src/shared/utils';
@@ -18,17 +18,29 @@ const useLoadCharacters = () => {
 
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
   const [totalPages, setTotalPages] = useState<number>(DEFAULT_PAGE);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const isLoadingPage = useMemo(
+    () => isLoading && page === DEFAULT_PAGE,
+    [isLoading, page],
+  );
+  const isLoadingMore = useMemo(
+    () => isLoading && page < totalPages,
+    [isLoading, page, totalPages],
+  );
+  const needLoadMore = useMemo(
+    () => !isLoading && page < totalPages && characters.length > 0,
+    [isLoading, page, totalPages, characters],
+  );
 
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const getCharactersList = useCallback(
     async (params) => {
+      setIsLoading(true);
+
       abortControllerRef.current?.abort();
 
       abortControllerRef.current = new AbortController();
-
-      if (page === DEFAULT_PAGE) setIsLoading(true);
 
       const res = await getData({
         url: `/character`,
@@ -49,11 +61,9 @@ const useLoadCharacters = () => {
     [page],
   );
 
-  const loadMore = useCallback(() => {
-    if (page < totalPages) {
-      setPage((prev) => prev + 1);
-    }
-  }, [page, totalPages]);
+  const loadMore = () => {
+    setPage((prev) => prev + 1);
+  };
 
   const debouncedFetch = useRef(debounce(getCharactersList, 300));
 
@@ -67,8 +77,6 @@ const useLoadCharacters = () => {
   }, [filters]);
 
   useEffect(() => {
-    setIsLoadingMore(page < totalPages);
-
     if (page === DEFAULT_PAGE) return;
 
     getCharactersList({ page, ...filters });
@@ -80,11 +88,10 @@ const useLoadCharacters = () => {
     setCharacters,
     filters,
     setFilters,
-    isLoading,
-    setPage,
-    totalPages,
     loadMore,
     isLoadingMore,
+    isLoadingPage,
+    needLoadMore,
   };
 };
 

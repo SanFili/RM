@@ -1,10 +1,9 @@
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { RickAndMorty } from 'src/assets';
 
 import { InfiniteScroll, Loader } from 'src/shared/components';
 import { useLoadCharacters } from 'src/shared/hooks';
-import { characterCardType, characterType } from 'src/shared/types';
 
 import { CharacterCard, CharactersFilters } from 'src/widgets';
 
@@ -16,9 +15,10 @@ const CharactersListPage = () => {
     setCharacters,
     filters,
     setFilters,
-    isLoading,
     loadMore,
     isLoadingMore,
+    isLoadingPage,
+    needLoadMore,
   } = useLoadCharacters();
 
   const onEditCharacter = useCallback(
@@ -53,56 +53,35 @@ const CharactersListPage = () => {
 
       <div className={styles.characters__content}>
         <CharactersFilters filters={filters} setFilters={setFilters} />
-        {isLoading ? (
+        {isLoadingPage ? (
           <Loader title='Loading characters...' />
         ) : (
           <>
             {characters.length ? (
-              <CharactersList
-                characters={characters}
-                onEditCharacter={onEditCharacter}
-              />
+              <div className={styles.characters__cards}>
+                {characters.map((character) => (
+                  <CharacterCard
+                    key={character.id}
+                    data={character}
+                    onEditCharacter={onEditCharacter}
+                  />
+                ))}
+              </div>
             ) : (
               <p className={styles.characters__empty}>
                 Characters list is empty...
               </p>
             )}
-            <InfiniteScroll isLoading={isLoadingMore} loadMore={loadMore} />
+            <InfiniteScroll
+              isLoading={isLoadingMore}
+              needLoadMore={needLoadMore}
+              loadMore={loadMore}
+            />
           </>
         )}
       </div>
     </div>
   );
 };
-
-const CharactersList = memo(
-  ({
-    characters,
-    onEditCharacter,
-  }: {
-    characters: characterType[];
-    onEditCharacter: (v: characterCardType) => void;
-  }) => {
-    return (
-      <div className={styles.characters__cards}>
-        {characters.map((character) => (
-          <CharacterCard
-            key={character.id}
-            data={{
-              id: character.id,
-              name: character.name,
-              status: character.status,
-              species: character.species,
-              gender: character.gender,
-              location: character.location.name,
-              image: character.image,
-            }}
-            onEditCharacter={onEditCharacter}
-          />
-        ))}
-      </div>
-    );
-  },
-);
 
 export default CharactersListPage;

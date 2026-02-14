@@ -34,25 +34,29 @@ const CharactersFilters: FC<CharactersFiltersProps> = ({
         icon={<Search />}
         placeholder='Filter by name'
         view='outlined'
-        onChange={(value) => onChangeFilters(value, 'name')}
+        onChange={onChangeFilters}
+        name='name'
         value={filters.name}
       />
       <Select
         options={speciesOptions}
         placeholder='Species'
-        onSelect={(value) => onChangeFilters(value, 'species')}
+        onSelect={onChangeFilters}
+        name='species'
         value={filters.species}
       />
       <Select
         options={genderOptions}
         placeholder='Gender'
-        onSelect={(value) => onChangeFilters(value, 'gender')}
+        onSelect={onChangeFilters}
+        naem='gender'
         value={filters.gender}
       />
       <Select
         options={statusesOptions}
         placeholder='Status'
-        onSelect={(value) => onChangeFilters(value, 'status')}
+        onSelect={onChangeFilters}
+        name='status'
         value={filters.status}
       />
     </div>

@@ -10,7 +10,7 @@ import styles from './Select.module.scss';
 interface ISelectProps {
   value: string | null;
   options: { value: string; label: string | Element }[];
-  onSelect: (v: string) => void;
+  onSelect: (v: string, name?: string) => void;
   size?: 'small' | 'large';
   placeholder?: string;
   disabled?: boolean;
@@ -43,10 +43,10 @@ const Select: FC<ISelectProps> = ({
 
   const handleSelect = useCallback(
     (value) => {
-      onSelect(value);
+      onSelect(value, name);
       handleClose();
     },
-    [handleClose, onSelect],
+    [handleClose, onSelect, name],
   );
 
   const selected = useMemo(
