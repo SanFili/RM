@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -6,17 +6,25 @@ import { Check, Close, Edit } from 'src/assets';
 
 import { Input, Select } from 'src/shared/components';
 import { statusesOptions } from 'src/shared/constants/options';
-import { characterCardType } from 'src/shared/types';
+import { characterCardType, characterType } from 'src/shared/types';
 
 import styles from './CharacterCard.module.scss';
 
 interface CharacterCardProps {
-  data: characterCardType;
+  data: characterType;
   onEditCharacter: (v: characterCardType) => void;
 }
 
 const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
-  const [characterData, setCharacterData] = useState<characterCardType>(data);
+  const [characterData, setCharacterData] = useState<characterCardType>({
+    id: data.id,
+    name: data.name,
+    status: data.status,
+    species: data.species,
+    gender: data.gender,
+    location: data.location.name,
+    image: data.image,
+  });
   const [disabled, setDisabled] = useState(true);
 
   const onChangeCharacter = useCallback(
@@ -51,7 +59,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
             value={characterData.name}
             disabled={disabled}
             name='name'
-            onChange={(value) => onChangeCharacter(value, 'name')}
+            onChange={onChangeCharacter}
           />
         </LinkEl>
         <label className={styles.card__label}>
@@ -79,7 +87,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
             view='small'
             disabled={disabled}
             name='location'
-            onChange={(value) => onChangeCharacter(value, 'location')}
+            onChange={onChangeCharacter}
           />
         </label>
         <label className={styles.card__label}>
@@ -101,7 +109,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
             size='small'
             name='status'
             disabled={disabled}
-            onSelect={(value) => onChangeCharacter(value, 'status')}
+            onSelect={onChangeCharacter}
           />
         </label>
         <div className={styles.card__buttons}>
@@ -122,4 +130,4 @@ const CharacterCard: FC<CharacterCardProps> = ({ data, onEditCharacter }) => {
   );
 };
 
-export default CharacterCard;
+export default memo(CharacterCard);
