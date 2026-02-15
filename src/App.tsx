@@ -5,7 +5,7 @@ import {
   CHARACTERS_LIST_PAGE,
 } from 'src/shared/constants';
 
-import { CharacterInfoPage, CharactersListPage } from './pages';
+import { CharacterInfoPage, CharactersListPage, NotFoundPage } from './pages';
 
 function App() {
   return (
@@ -14,6 +14,8 @@ function App() {
         <Route path='/' element={<Navigate to={CHARACTERS_LIST_PAGE} />} />
         <Route path={CHARACTERS_LIST_PAGE} element={<CharactersListPage />} />
         <Route path={CHARACTER_INFO_PAGE} element={<CharacterInfoPage />} />
+
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

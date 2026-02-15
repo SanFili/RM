@@ -1,8 +1,9 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { Arrow } from 'src/assets';
 
 import { Loader } from 'src/shared/components';
+import { NOT_FOUND_PAGE } from 'src/shared/constants';
 import { useLoadCharacter } from 'src/shared/hooks';
 
 import styles from './CharacterInfoPage.module.scss';
@@ -10,6 +11,9 @@ import styles from './CharacterInfoPage.module.scss';
 const CharacterInfoPage = () => {
   const { id } = useParams();
   const { character, isLoading, isNotFound } = useLoadCharacter(id);
+  const navigate = useNavigate();
+
+  if (isNotFound) navigate(NOT_FOUND_PAGE);
 
   return (
     <div className={styles.character}>

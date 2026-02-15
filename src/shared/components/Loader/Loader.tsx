@@ -14,8 +14,10 @@ interface ILoaderProps {
 const Loader: FC<ILoaderProps> = ({ title, size = 'large', className }) => {
   return (
     <div className={cn(styles.loader, styles[`loader_${size}`], className)}>
-      <img src={Loading} alt='Loading...' className={styles.loader__image} />
-      {title ? <p className={styles.loader__title}>{title}</p> : null}
+      <div className={styles.loader__inner}>
+        <img src={Loading} alt='Loading...' className={styles.loader__image} />
+        {title ? <p className={styles.loader__title}>{title}</p> : null}
+      </div>
     </div>
   );
 };
